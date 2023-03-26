@@ -1,0 +1,58 @@
+version: "3.9"
+volumes:
+  db-store:
+services:
+  app:
+    container_name: "${PROJECT_NAME}-app"
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    ports:
+      - target: 80
+        published: ${APP_PORT:-80}
+        protocol: tcp
+        mode: host
+      - target: 3001
+        published: ${APP_VITE_PORT:-3001}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ../..
+        target: /var/www/app
+        consistency: delegated
+  db:
+    container_name: "${PROJECT_NAME}-db"
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME:-animal_hospital}
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASS:-secret}
+    ports:
+      - target: 5432
+        published: ${DB_PORT:-5432}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/postgresql/data
+        volume:
+          nocopy: true
+  redis:
+    container_name: "${PROJECT_NAME}-redis"
+    image: redis:latest
+  mailhog:
+    container_name: "${PROJECT_NAME}-mailhog"
+    image: mailhog/mailhog
+    ports:
+      - ${SMTP_PORT:-8025}:8025
+  pgadmin4:
+    container_name: "${PROJECT_NAME}-pgadmin4"
+    image: dpage/pgadmin4
+    ports:
+        - "5433:80"
+    environment :
+        - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-test@123.com}
+        - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-123456}

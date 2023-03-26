@@ -1,0 +1,8 @@
+export { default as Visit } from './views/Visit.vue'
+export { default as Menu } from './views/Menu.vue'
+export { default as Time } from './views/Time.vue'
+export { default as Info } from './views/Info.vue'
+export { default as Confirm } from './views/Confirm.vue'
+export { default as Complete } from './views/Complete.vue'
+export { default as Cancel } from './views/Cancel.vue'
+export { default as CancelComplete } from './views/CancelComplete.vue'
