@@ -28,4 +28,4 @@
 
 このリポジトリをローカル環境で動かすには、以下の手順に従ってください。
 
-<https://github.com/newyee/animal_hospital/tree/main/docs>
+<https://github.com/newyee/animal-hospital/tree/main/docs>
