@@ -30,7 +30,9 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request): JsonResponse
     {
+        Log::info("ログが標準出力されましたよ!");
         $this->createActivation($request);
+        Log::info("hogehoghoeg");
 
         return response()->json([
             'requestMail' => $request->email
@@ -64,7 +66,7 @@ class RegisterController extends Controller
     {
         $code = $request->code;
         // 認証確認
-        if (! $this->checkCode($code)) {
+        if (!$this->checkCode($code)) {
             return response()->json([
                 'message' => __('mail.mail_activation_error')
             ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -99,12 +101,12 @@ class RegisterController extends Controller
     private function checkCode(string $code): bool
     {
         $activation = Activation::where('code', $code)->first();
-        if (! $activation) {
+        if (!$activation) {
             return false;
         }
 
         $latest = Activation::where('email', $activation->email)->latest()->first();
         $user = User::where('email', $activation->email)->first();
-        return $code === $latest->code && ! $user && Carbon::now()->lt($activation->expireAt());
+        return $code === $latest->code && !$user && Carbon::now()->lt($activation->expireAt());
     }
 }
