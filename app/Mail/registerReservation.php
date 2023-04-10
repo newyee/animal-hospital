@@ -13,7 +13,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 
-class registerReservation extends Mailable
+class RegisterReservation extends Mailable
 {
     use Queueable, SerializesModels;
 
