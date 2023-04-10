@@ -30,9 +30,7 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request): JsonResponse
     {
-        Log::info("ログが標準出力されましたよ!");
         $this->createActivation($request);
-        Log::info("hogehoghoeg");
 
         return response()->json([
             'requestMail' => $request->email
