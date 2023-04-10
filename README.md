@@ -4,6 +4,13 @@
 
 本リポジトリは、「Vue3 + TypeScript + Laravel9」で構築した動物病院の予約システムです。
 
+## 📝 本番環境URL
+
+
+本システムは、以下のURLにて公開しております。  
+
+<https://animal-hospital.onrender.com>
+
 ## 📝 機能一覧
 
 本システムでは、以下の機能を利用できます。
@@ -26,6 +33,6 @@
 
 ## 📝環境構築
 
-このリポジトリをローカル環境で動かすには、以下の手順に従ってください。
+このリポジトリをローカル環境で動かすには、以下のページを参照してください。
 
 <https://github.com/newyee/animal-hospital/tree/main/docs>
